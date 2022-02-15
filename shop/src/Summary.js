@@ -19,6 +19,7 @@ export const Summary = ({ products, onClear }) => {
   const groupedItems = groupBy(products, "title");
   const result = Object.entries(groupedItems).map(([key, items]) => (
     <li key={key}>
+      {<img className="img" src={items[0].image}></img>}
       {items[0].title} === 
       {items.length}
     </li>
