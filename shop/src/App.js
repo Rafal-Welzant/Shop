@@ -83,11 +83,11 @@ function App() {
                           </button>
                         </div>
                         {isExpanded && (
-                          <div >
+                          <dialog open>
                             {product.description}
                             {product.price}
                             {product.category}
-                          </div>
+                          </dialog>
                         )}
                       </div>
                     );
