@@ -1,0 +1,61 @@
+.Container {
+  height: 100vh;
+
+  display: grid;
+  grid-template-rows: 0.2fr 1fr 0.2fr;
+}
+.Nav {
+  font-size: 30px;
+  font-weight: bolder;
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+  grid-template-areas: "header nav";
+
+  border-bottom: 2px solid rgba(62, 104, 83, 0.774);
+}
+.ReactShopHeader {
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+}
+.Navigation {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  font-size: 15px;
+
+  grid-area: nav;
+}
+.Content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-rows: 2fr 0.1fr;
+}
+
+.Products {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  margin-left: 8px;
+}
+
+li {
+  background-color: #ececeac7;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border-radius: 10px;
+  border: 2px solid rgba(62, 104, 83, 0.774);
+}
+
+.Cart {
+  cursor: pointer;
+}

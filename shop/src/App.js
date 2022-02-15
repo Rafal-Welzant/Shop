@@ -3,7 +3,7 @@ import { CartItems } from "./CartItems";
 import { BrowserRouter, NavLink } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
-import css from './style.module.css'
+import "./App.css";
 import { Summary } from "./Summary";
 
 
@@ -45,12 +45,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className={css.page}>
-        <div className={css.nav}>
-          <div>
+      <div className="Container">
+        <div className="Nav">
+          <div className="ReactShopHeader">
           <h1>myShop</h1>
           </div>
-          <div>
+          <div className="Navigation">
           <NavLink to='/cart'>
             <img
               src="https://github.githubassets.com/images/icons/emoji/unicode/1f6d2.png"
@@ -63,17 +63,18 @@ function App() {
           </NavLink>
           </div>
         </div>
+        <div className="Content">
         <Routes>
           <Route
             path="/"
             element={
-              <div className={css.content}>
-              <ul className={css.productsList}>
+              <div className="Products">
+              
                 {products.map((product) => {
                   const { id, name } = product;
                   const isExpanded = selectedProductId === product.id;
                   return (
-                    <li className={css.item} key={product.id}>
+                    <div key={product.id}>
                       <div>
                         {product.name}
                         <button onClick={() => toggleDetailsId(id)}>
@@ -88,18 +89,20 @@ function App() {
                           {product.title} 
                           {product.price}
                           {product.category}
+                          
                         </div>
                       )}
-                    </li>
+                    </div>
                   );
                 })}
-              </ul>
+              
               </div>
             }
           ></Route>
           <Route path="/cart" element={<CartItems products={cart} addProduct={addToCart} removeProduct={removeFromCart} />}></Route>
           <Route path="/summary" element={<Summary products={cart} onClear={clearCart} />}></Route>
         </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );
