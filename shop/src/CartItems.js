@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import "./App.css";
 
 export const CartItems = ({ products, addProduct, removeProduct }) => {
 
@@ -12,14 +13,14 @@ export const CartItems = ({ products, addProduct, removeProduct }) => {
           {products
             .map((product) => product.price)
             .reduce((a, b) => a + b, 0)}
-          {" USD"}
+          {" $"}
         </p>
         {products.map((product, index) => {
           return (
             <div key={index}>
-              {product.price}
-              {/* {product.price.currency} */}
-              {/* {product.title} */}
+              {<img className="img" src={product.image}></img>}
+              {product.price}$
+              <hr></hr>
               <button onClick={() => addProduct(product)}>Add</button>
               <button onClick={() => removeProduct(index)}>Remove</button>
             </div>
@@ -35,7 +36,7 @@ export const CartItems = ({ products, addProduct, removeProduct }) => {
           {products
             .map((product) => product.price)
             .reduce((a, b) => a + b, 0)}
-          {" USD"}
+          {" $"}
         </p>
       </div>
     </>

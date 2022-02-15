@@ -6,18 +6,13 @@ import { Routes } from "react-router-dom";
 import "./App.css";
 import { Summary } from "./Summary";
 
-
-
-
 function App() {
-
   const [products, setProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [cart, setCart] = useState([]);
 
-
   useEffect(() => {
-    const API = "https://fakestoreapi.com/products";
+    const API = "https://fakestoreapi.com/products?limit=10";
     fetch(API)
       .then((response) => response.json())
       .then((data) => setProducts(data));
@@ -32,76 +27,87 @@ function App() {
   };
 
   const removeFromCart = (productIndex) => {
-      setCart((products) => {
-        const updateProducts = [...products];
-        updateProducts.splice(productIndex, 1);
-        return updateProducts; 
-      })
-  }
+    setCart((products) => {
+      const updateProducts = [...products];
+      updateProducts.splice(productIndex, 1);
+      return updateProducts;
+    });
+  };
 
   const clearCart = () => {
     setCart([]);
-  }
+  };
 
   return (
     <BrowserRouter>
       <div className="Container">
         <div className="Nav">
           <div className="ReactShopHeader">
-          <h1>myShop</h1>
+            <h1>myShop</h1>
           </div>
           <div className="Navigation">
-          <NavLink to='/cart'>
-            <img
-              src="https://github.githubassets.com/images/icons/emoji/unicode/1f6d2.png"
-              alt="cart"
-            ></img>
-            <p>liczba produktów w koszyku: {cart.length}</p>
-          </NavLink>
-          <NavLink to='/summary'>
-            <button>Summary</button>
-          </NavLink>
+            <NavLink to="/cart">
+              <img
+                className="img"
+                src="https://github.githubassets.com/images/icons/emoji/unicode/1f6d2.png"
+                alt="cart"
+              ></img>
+              <p>liczba produktów w koszyku: {cart.length}</p>
+            </NavLink>
+            <NavLink to="/summary">
+              <button>Summary</button>
+            </NavLink>
           </div>
         </div>
         <div className="Content">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="Products">
-              
-                {products.map((product) => {
-                  const { id, name } = product;
-                  const isExpanded = selectedProductId === product.id;
-                  return (
-                    <div key={product.id}>
-                      <div>
-                        {product.name}
-                        <button onClick={() => toggleDetailsId(id)}>
-                          {!isExpanded ? "Show details" : "Hide details"}
-                        </button>
-                        <button onClick={() => addToCart(product)}>
-                          Add to cart
-                        </button>
-                      </div>
-                      {isExpanded && (
-                        <div className="itemDetails">
-                          {product.title} 
-                          {product.price}
-                          {product.category}
-                          
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <div >
+                  {products.map((product) => {
+                    const { id } = product;
+                    const isExpanded = selectedProductId === product.id;
+                    return (
+                      <div className="Products" key={product.id}>
+                        <div>
+                        {<img className="img" src={product.image}></img>}
+                          {product.title}
+                          <button onClick={() => toggleDetailsId(id)}>
+                            {!isExpanded ? "Show details" : "Hide details"}
+                          </button>
+                          <button onClick={() => addToCart(product)}>
+                            Add to cart
+                          </button>
                         </div>
-                      )}
-                    </div>
-                  );
-                })}
-              
-              </div>
-            }
-          ></Route>
-          <Route path="/cart" element={<CartItems products={cart} addProduct={addToCart} removeProduct={removeFromCart} />}></Route>
-          <Route path="/summary" element={<Summary products={cart} onClear={clearCart} />}></Route>
-        </Routes>
+                        {isExpanded && (
+                          <div >
+                            {product.description}
+                            {product.price}
+                            {product.category}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/cart"
+              element={
+                <CartItems
+                  products={cart}
+                  addProduct={addToCart}
+                  removeProduct={removeFromCart}
+                />
+              }
+            ></Route>
+            <Route
+              path="/summary"
+              element={<Summary products={cart} onClear={clearCart} />}
+            ></Route>
+          </Routes>
         </div>
       </div>
     </BrowserRouter>
