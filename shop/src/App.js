@@ -5,19 +5,17 @@ import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import "./App.css";
 import { Summary } from "./Summary";
-
-
+import { getProducts } from './services/products';
+import { Modal } from './Modal';
 
 function App() {
   const [products, setProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [cart, setCart] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const API = "https://fakestoreapi.com/products?limit=10";
-    fetch(API)
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
+   getProducts().then(setProducts).catch(setError);
   }, []);
 
   const toggleDetailsId = (id) => {
@@ -51,9 +49,9 @@ function App() {
             <NavLink to="/cart">
               <img
                 className="imgcart"
-                src={process.env.PUBLIC_URL+"/cart.png"}
+                src={process.env.PUBLIC_URL + "/cart.png"}
                 alt="cart"
-              ></img>
+              />
               <p>liczba produktów w koszyku: {cart.length}</p>
             </NavLink>
             <NavLink to="/summary">
@@ -66,14 +64,15 @@ function App() {
             <Route
               path="/"
               element={
-                <div >
+                <div>
+                  {error && <p>{error.message}</p>}
                   {products.map((product) => {
                     const { id } = product;
                     const isExpanded = selectedProductId === product.id;
                     return (
                       <div className="Products" key={product.id}>
                         <div>
-                        {<img className="img" src={product.image}></img>}
+                          {<img className="img" src={product.image}></img>}
                           {product.title}
                           <button onClick={() => toggleDetailsId(id)}>
                             {!isExpanded ? "Show details" : "Hide details"}
@@ -83,18 +82,18 @@ function App() {
                           </button>
                         </div>
                         {isExpanded && (
-                          <div >
+                          <Modal>
                             {product.description}
                             {product.price}
                             {product.category}
-                          </div>
+                          </Modal>
                         )}
                       </div>
                     );
                   })}
                 </div>
               }
-            ></Route>
+            />
             <Route
               path="/cart"
               element={
@@ -104,11 +103,11 @@ function App() {
                   removeProduct={removeFromCart}
                 />
               }
-            ></Route>
+            />
             <Route
               path="/summary"
               element={<Summary products={cart} onClear={clearCart} />}
-            ></Route>
+            />
           </Routes>
         </div>
       </div>
