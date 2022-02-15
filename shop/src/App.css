@@ -41,6 +41,11 @@ img {
   height: 150px;
 }
 
+.imgcart {
+  width: 100px;
+  height: 100px;
+}
+
 .Cart {
   cursor: pointer;
 }

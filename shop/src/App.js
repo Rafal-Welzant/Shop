@@ -6,6 +6,8 @@ import { Routes } from "react-router-dom";
 import "./App.css";
 import { Summary } from "./Summary";
 
+
+
 function App() {
   const [products, setProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
@@ -48,8 +50,8 @@ function App() {
           <div className="Navigation">
             <NavLink to="/cart">
               <img
-                className="img"
-                src="https://github.githubassets.com/images/icons/emoji/unicode/1f6d2.png"
+                className="imgcart"
+                src={process.env.PUBLIC_URL+"/cart.png"}
                 alt="cart"
               ></img>
               <p>liczba produktów w koszyku: {cart.length}</p>
