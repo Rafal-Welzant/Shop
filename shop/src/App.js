@@ -6,16 +6,17 @@ import { Routes } from "react-router-dom";
 import "./App.css";
 import { Summary } from "./Summary";
 import { Home } from "./Home";
+import { getProducts } from './services/products';
+import { Modal } from './Modal';
+
 
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const API = "https://fakestoreapi.com/products?limit=10";
-    fetch(API)
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
+    getProducts().then(setProducts).catch(setError);
   }, []);
 
   const addToCart = (product) => {
