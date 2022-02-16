@@ -7,7 +7,7 @@ import "./App.css";
 import { Summary } from "./Summary";
 import { Home } from "./Home";
 import { getProducts } from './services/products';
-import { Modal } from './Modal';
+
 
 
 function App() {
