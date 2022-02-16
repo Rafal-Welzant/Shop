@@ -5,12 +5,10 @@ import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import "./App.css";
 import { Summary } from "./Summary";
-
-
+import { Home } from "./Home";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [selectedProductId, setSelectedProductId] = useState(null);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -19,10 +17,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
-
-  const toggleDetailsId = (id) => {
-    setSelectedProductId((oldId) => (oldId === id ? null : id));
-  };
 
   const addToCart = (product) => {
     setCart((cartProducts) => [...cartProducts, product]);
@@ -51,7 +45,7 @@ function App() {
             <NavLink to="/cart">
               <img
                 className="imgcart"
-                src={process.env.PUBLIC_URL+"/cart.png"}
+                src={process.env.PUBLIC_URL + "/cart.png"}
                 alt="cart"
               ></img>
               <p>liczba produktów w koszyku: {cart.length}</p>
@@ -65,43 +59,12 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={
-                <div >
-                  {products.map((product) => {
-                    const { id } = product;
-                    const isExpanded = selectedProductId === product.id;
-                    return (
-                      <div className="Products" key={product.id}>
-                        <div>
-                        {<img className="img" src={product.image}></img>}
-                          {product.title}
-                          <button onClick={() => toggleDetailsId(id)}>
-                            {!isExpanded ? "Show details" : "Hide details"}
-                          </button>
-                          <button onClick={() => addToCart(product)}>
-                            Add to cart
-                          </button>
-                        </div>
-                        {isExpanded && (
-                          <dialog open>
-                            {product.description}
-                            {product.price}
-                            {product.category}
-                          </dialog>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              }
+              element={<Home products={products} addToCart={addToCart} />}
             ></Route>
             <Route
               path="/cart"
               element={
-                <CartItems
-                  products={cart}
-                  addProduct={addToCart}
-                  removeProduct={removeFromCart}
+                <CartItems products={cart} addProduct={addToCart} removeProduct={removeFromCart}
                 />
               }
             ></Route>
