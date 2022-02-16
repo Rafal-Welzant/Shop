@@ -1,6 +1,6 @@
-.Container {
-  display: grid;
-}
+/* .Container {
+  display: flex;
+} */
 .Nav {
   font-size: 30px;
   font-weight: bolder;
@@ -22,7 +22,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-template-rows: 2fr 0.1fr;
 }
 
 .Products {

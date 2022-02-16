@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Home.css";
 
 export const Home =({products, addToCart}) =>{
 
@@ -11,14 +12,14 @@ export const Home =({products, addToCart}) =>{
 
 return (
 
-<div>
+<div className="container">
   {products.map((product) => {
     const { id } = product;
     const isExpanded = selectedProductId === product.id;
     return (
-      <div className="Products" key={product.id}>
-        <div>
-          {<img className="img" src={product.image}></img>}
+      <div className="productContainer" key={product.id}>
+        <div className="product">
+          {<img className="img" src={product.image}></img>}<br></br>
           {product.title}
           <button onClick={() => toggleDetailsId(id)}>
             {!isExpanded ? "Show details" : "Hide details"}
@@ -26,11 +27,11 @@ return (
           <button onClick={() => addToCart(product)}>Add to cart</button>
         </div>
         {isExpanded && (
-          <dialog open>
-            {product.description}
-            {product.price}
-            {product.category}
-          </dialog>
+          <div>
+            {product.description}<br></br>
+            <hr></hr>
+            Price: {product.price} USD<br></br>
+          </div>
         )}
       </div>
     );

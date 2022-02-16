@@ -37,15 +37,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="Container">
-        <div className="Nav">
-          <div className="ReactShopHeader">
+      <div>
+        <div>
+          <div>
             <h1>myShop</h1>
           </div>
-          <div className="Navigation">
+          <div>
             <NavLink to="/cart">
               <img
-                className="imgcart"
                 src={process.env.PUBLIC_URL + "/cart.png"}
                 alt="cart"
               ></img>
@@ -56,7 +55,7 @@ function App() {
             </NavLink>
           </div>
         </div>
-        <div className="Content">
+        <div>
           <Routes>
             <Route
               path="/"
