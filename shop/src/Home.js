@@ -27,10 +27,16 @@ return (
           <button onClick={() => addToCart(product)}>Add to cart</button>
         </div>
         {isExpanded && (
-          <div>
-            {product.description}<br></br>
-            <hr></hr>
-            Price: {product.price} USD<br></br>
+          <div onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setSelectedProductId(null)
+            }
+          }} style={{ position: 'fixed', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'rgba(0,0,0,0.5)' }}>
+            <dialog open style={{ position: 'fixed', top: '20vh', bottom: '20vh', width: '30vw'}}>
+              {product.description}<br></br>
+              <hr></hr>
+              Price: {product.price} USD<br></br>
+            </dialog>
           </div>
         )}
       </div>
