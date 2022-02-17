@@ -1,4 +1,4 @@
-const API = "https://fakestoreapi.com/products?limit=10";
+const API = "https://fakestoreapi.com/products?limit=12";
 
 export const getProducts = () => {
   return fetch(API)
