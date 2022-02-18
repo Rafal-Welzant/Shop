@@ -45,5 +45,39 @@ code {
 .img {
   width: 150px;
   height: 150px;
-  background-color: blanchedalmond;
+}
+
+.details {
+  position: fixed;
+  inset: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog {
+  position: fixed;
+  top: 20vh;
+  bottom: 20vh;
+  width: 30vw;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.shopName {
+  color: #ffffff;
+  font-size: 125px;
+  background: white;
+  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }

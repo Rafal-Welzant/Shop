@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import "./App.css";
+import "./CartItems.css";
 
 export const CartItems = ({ products, addProduct, removeProduct }) => {
 
 
   return (
-    <>
-      <div>
+    <div className="container">
+      <div className="content">
         <p>
           Total Price:
           {products
@@ -38,7 +38,10 @@ export const CartItems = ({ products, addProduct, removeProduct }) => {
             .reduce((a, b) => a + b, 0)}
           {" $"}
         </p>
+        <NavLink to="/summary">
+          <button>Summary</button>
+        </NavLink>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "./Summary.css";
 
 
 
@@ -18,11 +19,11 @@ export const Summary = ({ products, onClear }) => {
 
   const groupedItems = groupBy(products, "title");
   const result = Object.entries(groupedItems).map(([key, items]) => (
-    <li key={key}>
+    <ul key={key}>
       {<img className="img" src={items[0].image}></img>}
       {items[0].title} === 
       {items.length}
-    </li>
+    </ul>
   ));
 
   const handleBuyNow = () => {
@@ -30,12 +31,12 @@ export const Summary = ({ products, onClear }) => {
   }
 
   return (
-    <>
+    <div className="container">
       <div>{result}</div>
       <NavLink to="/">
         <button>Back to Shop</button>
       </NavLink>
       <button onClick={handleBuyNow} disabled = {products.length === 0}>Buy Now</button>
-    </>
+    </div>
   );
 };

@@ -38,21 +38,24 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <div>
+        <div className="navBar">
           <div>
-            <h1>myShop</h1>
+          <NavLink to="/">
+            <h1 className="shopName">myShop</h1>
+            </NavLink>
           </div>
-          <div>
+          <div className="navDetails">
             <NavLink to="/cart">
               <img
+                style={{width: "75px", height:"75px"}}
                 src={process.env.PUBLIC_URL + "/cart.png"}
                 alt="cart"
               ></img>
-              <p>liczba produktów w koszyku: {cart.length}</p>
+              <p className="amount"> liczba produktów w koszyku: {cart.length}</p>
             </NavLink>
-            <NavLink to="/summary">
-              <button>Summary</button>
-            </NavLink>
+            {/* <NavLink to="/summary">
+              <button className="button">Summary</button>
+            </NavLink> */}
           </div>
         </div>
         <div>
