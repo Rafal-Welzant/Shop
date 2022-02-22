@@ -9,7 +9,7 @@ export const EditUserView = () => {
   const user = getUserById(Number(userId));
 
   if (!user) {
-    return <Navigate to="/" />
+    return <navigate to="/" />
   }
 
   return <EditUserForm user={user} />
