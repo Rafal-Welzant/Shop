@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useUsers } from './contexts/UsersContext';
 
-function Addform({ users, addUser, setUsers }) {
+function Addform() {
+  const { addUser } = useUsers();
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
 
