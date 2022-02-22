@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useUsers } from "./contexts/UsersContext"
 
-function Userstable() {
+export const UsersView = () => {
   const { users, removeUser } = useUsers();
   const navigate = useNavigate()
 
@@ -43,5 +43,3 @@ function Userstable() {
     </>
   );
 }
-
-export default Userstable;

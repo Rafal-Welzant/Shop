@@ -10,13 +10,12 @@ export const UsersProvider = ({ children }) => {
    getUsers().then(setUsers);
   }, []);
 
-  const addUser = (name, mail) => {
+  const addUser = (userData) => {
     setUsers((oldState) => [
       ...oldState,
       {
         id: Date.now(),
-        name: name,
-        email: mail,
+        ...userData
       },
     ]);
   };

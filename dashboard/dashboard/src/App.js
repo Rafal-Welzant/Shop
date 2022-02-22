@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
-import Addform from "./Addform";
-import Userstable from "./Userstable";
+import { AddUserForm } from "./AddUserForm";
+import { UsersView } from "./UsersView";
 import { EditUserView } from './EditUserView';
 
 function App() {
@@ -10,12 +10,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Userstable />}
+          element={<UsersView />}
         />
         <Route
           path="/adduser"
           element={
-            <Addform />
+            <AddUserForm />
           }
         />
         <Route
