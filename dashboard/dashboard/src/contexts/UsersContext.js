@@ -3,6 +3,7 @@ import { getUsers, postUser } from '../services/users';
 
 const Context = createContext();
 
+
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
