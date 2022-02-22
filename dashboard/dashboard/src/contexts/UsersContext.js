@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { getUsers } from '../services/users';
+import { getUsers, postUser } from '../services/users';
 
 const Context = createContext();
 
@@ -11,13 +11,16 @@ export const UsersProvider = ({ children }) => {
   }, []);
 
   const addUser = (userData) => {
-    setUsers((oldState) => [
-      ...oldState,
-      {
-        id: Date.now(),
-        ...userData
-      },
-    ]);
+    return postUser(userData).then(() => {
+      setUsers((oldState) => [
+        ...oldState,
+        {
+          id: Date.now(),
+          ...userData
+        },
+      ]);
+    })
+    
   };
 
   const removeUser = (userId) => {

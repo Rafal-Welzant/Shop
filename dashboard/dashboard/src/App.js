@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { AddUserForm } from "./AddUserForm";
 import { UsersView } from "./UsersView";
 import { EditUserView } from './EditUserView';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route
           path="/"
@@ -25,7 +24,7 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

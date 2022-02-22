@@ -15,3 +15,13 @@ export const getUsers = () => {
         }
       }))
 }
+
+export const postUser = ({ city, ...user }) => {
+  return fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...user, address: { city }}) })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Server error")
+      })
+}

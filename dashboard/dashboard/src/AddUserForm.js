@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useUsers } from './contexts/UsersContext';
 
@@ -22,8 +22,7 @@ export const AddUserForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addUser(userData);
-    navigate('/')
+    addUser(userData).then(() => navigate('/'));
   }
 
   return (
